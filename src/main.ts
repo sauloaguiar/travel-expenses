@@ -1,22 +1,17 @@
-// ESM
-import Fastify from 'fastify'
-const fastify = Fastify({
-  logger: true
-})
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app/app.module';
 
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+const port = process.env.PORT || 3000;
 
-/**
- * Run the server!
- */
-const start = async () => {
-  try {
-    await fastify.listen({ port: 3000 })
-  } catch (err) {
-    fastify.log.error(err)
-    process.exit(1)
-  }
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(port, () => {
+    console.log(`Nest Web Server start on port : ${port}`);
+  });
 }
-start()
+
+bootstrap().catch((err) => {
+  console.log(err);
+
+  process.exit(1);
+});
