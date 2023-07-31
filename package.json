@@ -7,7 +7,7 @@
     "start": "nest start",
     "start:dev": "rm -rf dist && nest start --watch",
     "build": "tsc -p tsconfig.json",
-    "start:prod": "node dist/main.js",
+    "start:prod": "node dist/src/main.js",
     "test": "tsc && jest ./dist"
   },
   "dependencies": {
